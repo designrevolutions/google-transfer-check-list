@@ -135,6 +135,21 @@
             animation: fadeInUp 650ms ease both;
         }
 
+        .transfer-section:nth-child(1)
+        {
+            animation-delay: 80ms;
+        }
+
+        .transfer-section:nth-child(2)
+        {
+            animation-delay: 160ms;
+        }
+
+        .transfer-section:nth-child(3)
+        {
+            animation-delay: 240ms;
+        }
+
         .section-header
         {
             display: flex;
@@ -652,6 +667,28 @@
                         </span>
                     </label>
 
+                    <label class="task-item" for="photos-set-storage-saver">
+                        <input class="task-checkbox" type="checkbox" id="photos-set-storage-saver" data-storage-key="google-transfer-checklist:v2:photos-set-storage-saver">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Set the receiving account to Storage saver</span>
+                            <span class="task-description">
+                                In the new/receiving Google Photos account, set the backup quality to <strong>Storage saver</strong>. This should help reduce future storage use, but still keep an eye on the new account’s storage because photos saved from the old Pixel-backed account may start counting against the new account’s storage.
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-watch-storage-usage">
+                        <input class="task-checkbox" type="checkbox" id="photos-watch-storage-usage" data-storage-key="google-transfer-checklist:v2:photos-watch-storage-usage">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Watch the new account’s storage usage</span>
+                            <span class="task-description">
+                                The old/source account may have had Pixel-related free or reduced-count photo storage. The new account may not get the same benefit, so watch for Google storage warnings after the photos have had time to settle.
+                            </span>
+                        </span>
+                    </label>
+
                     <label class="task-item" for="photos-check-old-recent-video">
                         <input class="task-checkbox" type="checkbox" id="photos-check-old-recent-video" data-storage-key="google-transfer-checklist:v2:photos-check-old-recent-video">
                         <span class="custom-checkbox" aria-hidden="true"></span>
@@ -684,6 +721,12 @@
                     <h3>Google Photos note</h3>
                     <p>
                         If you clicked <strong>Yes</strong> when Google asked whether to auto-save all shared photos, that is most likely the correct action. The next step is to verify by checking old photos, recent photos and videos inside the receiving account.
+                    </p>
+                    <p>
+                        Because the old/source account had Pixel-related photo storage benefits, some photos may not have counted against storage in the old account. When those photos are saved into the new account, they may start counting against the new account’s storage.
+                    </p>
+                    <p>
+                        Setting the new/receiving account to <strong>Storage saver</strong> is a sensible step, but you should still watch for Google storage warnings and check the storage usage after the photo transfer has had time to settle.
                     </p>
                     <p>
                         Keep the Takeout backup until you have checked the receiving account properly. This is especially important for videos, screenshots, WhatsApp images, downloaded images and app-folder photos.
@@ -736,7 +779,7 @@
         {
             const storageKey = checkbox.dataset.storageKey;
 
-            // Store a simple string value so it remains easy to inspect in browser dev tools.
+            // Store a simple string value so it remains easy to inspect in browser developer tools.
             localStorage.setItem(storageKey, checkbox.checked ? "true" : "false");
         }
 
