@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Account Transfer Checklist</title>
+
+    <style>
+        :root {
+            --background: #f6f8fb;
+            --card-background: #ffffff;
+            --primary: #2563eb;
+            --primary-soft: #dbeafe;
+            --success: #16a34a;
+            --text-main: #172033;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 34rem),
+                radial-gradient(circle at bottom right, rgba(22, 163, 74, 0.10), transparent 30rem),
+                var(--background);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 48px 18px;
+        }
+
+        .page {
+            width: min(920px, 100%);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 26px;
+            animation: fadeInUp 650ms ease both;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: var(--primary);
+            background: var(--primary-soft);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: clamp(30px, 5vw, 46px);
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
+            margin: 0 auto;
+            max-width: 650px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 16px;
+        }
+
+        .transfer-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeInUp 650ms ease both;
+        }
+
+        .transfer-card:nth-child(1) {
+            animation-delay: 80ms;
+        }
+
+        .transfer-card:nth-child(2) {
+            animation-delay: 160ms;
+        }
+
+        .transfer-card:nth-child(3) {
+            animation-delay: 240ms;
+        }
+
+        .transfer-card__header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 22px 24px;
+            cursor: pointer;
+        }
+
+        .transfer-card__checkbox {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .custom-checkbox {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            margin-top: 2px;
+            border: 2px solid #cbd5e1;
+            border-radius: 9px;
+            background: #ffffff;
+            display: grid;
+            place-items: center;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .custom-checkbox::after {
+            content: "";
+            width: 7px;
+            height: 13px;
+            border: solid #ffffff;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg) scale(0);
+            opacity: 0;
+            transition: transform 180ms ease, opacity 180ms ease;
+        }
+
+        .transfer-card__content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .transfer-card__title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 21px;
+            letter-spacing: -0.02em;
+            transition: color 180ms ease, text-decoration-color 180ms ease;
+        }
+
+        .status-pill {
+            flex: 0 0 auto;
+            padding: 6px 10px;
+            border-radius: 999px;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            font-size: 13px;
+            font-weight: 700;
+            transition: color 180ms ease, background 180ms ease;
+        }
+
+        .transfer-card p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .steps {
+            margin: 0;
+            padding: 0 24px 22px 68px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .steps li {
+            margin: 7px 0;
+        }
+
+        .steps strong {
+            color: var(--text-main);
+        }
+
+        .transfer-card__checkbox:checked + .transfer-card__header .custom-checkbox {
+            border-color: var(--success);
+            background: var(--success);
+            transform: scale(1.05);
+        }
+
+        .transfer-card__checkbox:checked + .transfer-card__header .custom-checkbox::after {
+            opacity: 1;
+            transform: rotate(45deg) scale(1);
+        }
+
+        .transfer-card__checkbox:checked + .transfer-card__header h2,
+        .transfer-card__checkbox:checked + .transfer-card__header p,
+        .transfer-card__checkbox:checked ~ .steps {
+            color: #94a3b8;
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            text-decoration-color: rgba(22, 163, 74, 0.45);
+        }
+
+        .transfer-card__checkbox:checked + .transfer-card__header .status-pill {
+            color: #166534;
+            background: #dcfce7;
+        }
+
+        .transfer-card__checkbox:checked + .transfer-card__header .status-pill::before {
+            content: "Done: ";
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.72);
+            line-height: 1.55;
+            animation: fadeInUp 650ms ease 320ms both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 12px;
+            }
+
+            .transfer-card__header {
+                padding: 20px;
+            }
+
+            .transfer-card__title-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .steps {
+                padding: 0 20px 20px 62px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero__badge">Google transfer checklist</div>
+            <h1 id="page-title">Move everything safely</h1>
+            <p>
+                Work through Gmail, Google Drive and Google Photos one at a time. Tick each section when you have confirmed the data exists in the receiving account.
+            </p>
+        </section>
+
+        <section class="checklist" aria-label="Google account transfer tasks">
+            <article class="transfer-card">
+                <input class="transfer-card__checkbox" type="checkbox" id="gmail-transfer">
+
+                <label class="transfer-card__header" for="gmail-transfer">
+                    <span class="custom-checkbox" aria-hidden="true"></span>
+
+                    <div class="transfer-card__content">
+                        <div class="transfer-card__title-row">
+                            <h2>Gmail transfer</h2>
+                            <span class="status-pill">Pending</span>
+                        </div>
+                        <p>Move old emails into the new Gmail account using Gmail import, Takeout, or an email client such as Thunderbird.</p>
+                    </div>
+                </label>
+
+                <ol class="steps">
+                    <li>Open the receiving Gmail account and go to <strong>Settings &gt; Accounts and Import</strong>.</li>
+                    <li>Use <strong>Import mail and contacts</strong> if available for your old account.</li>
+                    <li>Check that important labels, sent mail, attachments and old conversations are present.</li>
+                    <li>Keep a Google Takeout backup before deleting anything from the old account.</li>
+                </ol>
+            </article>
+
+            <article class="transfer-card">
+                <input class="transfer-card__checkbox" type="checkbox" id="drive-transfer">
+
+                <label class="transfer-card__header" for="drive-transfer">
+                    <span class="custom-checkbox" aria-hidden="true"></span>
+
+                    <div class="transfer-card__content">
+                        <div class="transfer-card__title-row">
+                            <h2>Google Drive files</h2>
+                            <span class="status-pill">Pending</span>
+                        </div>
+                        <p>Share files or folders with the receiving account, then create copies or move them into the new account’s My Drive.</p>
+                    </div>
+                </label>
+
+                <ol class="steps">
+                    <li>Put the files into one main folder in the source Google Drive account.</li>
+                    <li>Share that folder with the receiving account as <strong>Editor</strong>.</li>
+                    <li>In the receiving account, open <strong>Shared with me</strong> and copy the files into <strong>My Drive</strong>.</li>
+                    <li>Confirm ownership/storage before removing files from the source account.</li>
+                </ol>
+            </article>
+
+            <article class="transfer-card">
+                <input class="transfer-card__checkbox" type="checkbox" id="photos-transfer">
+
+                <label class="transfer-card__header" for="photos-transfer">
+                    <span class="custom-checkbox" aria-hidden="true"></span>
+
+                    <div class="transfer-card__content">
+                        <div class="transfer-card__title-row">
+                            <h2>Google Photos transfer</h2>
+                            <span class="status-pill">Pending</span>
+                        </div>
+                        <p>Use Partner Sharing, then save the shared photos into the receiving Google Photos account.</p>
+                    </div>
+                </label>
+
+                <ol class="steps">
+                    <li>In the source account, open Google Photos and enable <strong>Partner Sharing</strong>.</li>
+                    <li>Invite the receiving Google account and share all photos, or photos from a chosen date.</li>
+                    <li>In the receiving account, accept the invite and choose <strong>Save to your account &gt; All photos</strong>.</li>
+                    <li>Check old, recent and video items before deleting anything from the source account.</li>
+                </ol>
+            </article>
+        </section>
+
+        <p class="footer-note">
+            Tip: do not delete anything from the old account until the receiving account has been checked carefully. A Takeout backup is useful as a final safety net.
+        </p>
+    </main>
+</body>
+</html>
