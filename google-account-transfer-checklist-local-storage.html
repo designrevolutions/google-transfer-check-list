@@ -12,7 +12,6 @@
             --card-background: #ffffff;
             --primary: #2563eb;
             --primary-soft: #dbeafe;
-            --primary-dark: #1d4ed8;
             --success: #16a34a;
             --warning-soft: #fff7ed;
             --danger: #dc2626;
@@ -46,7 +45,7 @@
 
         .page
         {
-            width: min(920px, 100%);
+            width: min(980px, 100%);
         }
 
         .hero
@@ -80,7 +79,7 @@
         .hero p
         {
             margin: 0 auto;
-            max-width: 650px;
+            max-width: 720px;
             color: var(--text-muted);
             line-height: 1.6;
             font-size: 17px;
@@ -123,44 +122,84 @@
         .checklist
         {
             display: grid;
-            gap: 16px;
+            gap: 18px;
         }
 
-        .transfer-card
+        .transfer-section
         {
             background: rgba(255, 255, 255, 0.88);
             border: 1px solid var(--border);
-            border-radius: 22px;
+            border-radius: 24px;
             box-shadow: var(--shadow);
             overflow: hidden;
             animation: fadeInUp 650ms ease both;
         }
 
-        .transfer-card:nth-child(1)
-        {
-            animation-delay: 80ms;
-        }
-
-        .transfer-card:nth-child(2)
-        {
-            animation-delay: 160ms;
-        }
-
-        .transfer-card:nth-child(3)
-        {
-            animation-delay: 240ms;
-        }
-
-        .transfer-card__header
+        .section-header
         {
             display: flex;
             align-items: flex-start;
+            justify-content: space-between;
             gap: 16px;
-            padding: 22px 24px;
-            cursor: pointer;
+            padding: 24px 26px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.54);
         }
 
-        .transfer-card__checkbox
+        .section-header h2
+        {
+            margin: 0 0 8px;
+            font-size: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .section-header p
+        {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .section-progress
+        {
+            flex: 0 0 auto;
+            padding: 7px 11px;
+            border-radius: 999px;
+            color: var(--primary);
+            background: var(--primary-soft);
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .task-list
+        {
+            display: grid;
+            gap: 0;
+        }
+
+        .task-item
+        {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 18px 26px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 180ms ease;
+        }
+
+        .task-item:last-child
+        {
+            border-bottom: 0;
+        }
+
+        .task-item:hover
+        {
+            background: rgba(37, 99, 235, 0.035);
+        }
+
+        .task-checkbox
         {
             position: absolute;
             opacity: 0;
@@ -169,12 +208,12 @@
 
         .custom-checkbox
         {
-            width: 28px;
-            height: 28px;
-            flex: 0 0 28px;
-            margin-top: 2px;
+            width: 26px;
+            height: 26px;
+            flex: 0 0 26px;
+            margin-top: 1px;
             border: 2px solid #cbd5e1;
-            border-radius: 9px;
+            border-radius: 8px;
             background: #ffffff;
             display: grid;
             place-items: center;
@@ -185,7 +224,7 @@
         {
             content: "";
             width: 7px;
-            height: 13px;
+            height: 12px;
             border: solid #ffffff;
             border-width: 0 3px 3px 0;
             transform: rotate(45deg) scale(0);
@@ -193,70 +232,48 @@
             transition: transform 180ms ease, opacity 180ms ease;
         }
 
-        .transfer-card__content
+        .task-content
         {
             flex: 1;
             min-width: 0;
         }
 
-        .transfer-card__title-row
+        .task-title
         {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        h2
-        {
-            margin: 0;
-            font-size: 21px;
-            letter-spacing: -0.02em;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-main);
             transition: color 180ms ease, text-decoration-color 180ms ease;
         }
 
-        .status-pill
+        .task-description
         {
-            flex: 0 0 auto;
-            padding: 6px 10px;
-            border-radius: 999px;
-            color: var(--text-muted);
-            background: #f1f5f9;
-            font-size: 13px;
-            font-weight: 700;
-            transition: color 180ms ease, background 180ms ease;
-        }
-
-        .transfer-card p
-        {
-            margin: 0;
+            display: block;
             color: var(--text-muted);
             line-height: 1.55;
+            transition: color 180ms ease, text-decoration-color 180ms ease;
         }
 
-        .steps
-        {
-            margin: 0;
-            padding: 0 24px 22px 68px;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        .steps li
-        {
-            margin: 7px 0;
-        }
-
-        .steps strong
+        .task-description strong
         {
             color: var(--text-main);
         }
 
-        .settings-box
+        .task-description code
         {
-            margin: 4px 24px 22px 68px;
-            padding: 14px 16px;
+            padding: 2px 5px;
+            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.06);
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.92em;
+        }
+
+        .info-box
+        {
+            margin: 6px 26px 24px;
+            padding: 15px 17px;
             border: 1px solid #fed7aa;
             border-radius: 16px;
             color: var(--text-main);
@@ -264,54 +281,44 @@
             line-height: 1.55;
         }
 
-        .settings-box h3
+        .info-box h3
         {
             margin: 0 0 8px;
             color: #9a3412;
             font-size: 16px;
         }
 
-        .settings-box code
+        .info-box p
         {
-            padding: 2px 5px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.78);
-            font-family: Consolas, Monaco, monospace;
+            margin: 0 0 10px;
+            color: var(--text-muted);
         }
 
-        .transfer-card__checkbox:checked + .transfer-card__header .custom-checkbox
+        .info-box p:last-child
+        {
+            margin-bottom: 0;
+        }
+
+        .task-checkbox:checked + .custom-checkbox
         {
             border-color: var(--success);
             background: var(--success);
             transform: scale(1.05);
         }
 
-        .transfer-card__checkbox:checked + .transfer-card__header .custom-checkbox::after
+        .task-checkbox:checked + .custom-checkbox::after
         {
             opacity: 1;
             transform: rotate(45deg) scale(1);
         }
 
-        .transfer-card__checkbox:checked + .transfer-card__header h2,
-        .transfer-card__checkbox:checked + .transfer-card__header p,
-        .transfer-card__checkbox:checked ~ .steps,
-        .transfer-card__checkbox:checked ~ .settings-box
+        .task-checkbox:checked ~ .task-content .task-title,
+        .task-checkbox:checked ~ .task-content .task-description
         {
             color: #94a3b8;
             text-decoration: line-through;
             text-decoration-thickness: 2px;
             text-decoration-color: rgba(22, 163, 74, 0.45);
-        }
-
-        .transfer-card__checkbox:checked + .transfer-card__header .status-pill
-        {
-            color: #166534;
-            background: #dcfce7;
-        }
-
-        .transfer-card__checkbox:checked + .transfer-card__header .status-pill::before
-        {
-            content: "Done: ";
         }
 
         .footer-note
@@ -358,25 +365,25 @@
                 width: 100%;
             }
 
-            .transfer-card__header
+            .section-header
             {
-                padding: 20px;
-            }
-
-            .transfer-card__title-row
-            {
-                align-items: flex-start;
                 flex-direction: column;
+                padding: 22px 20px;
             }
 
-            .steps
+            .section-progress
             {
-                padding: 0 20px 20px 62px;
+                align-self: flex-start;
             }
 
-            .settings-box
+            .task-item
             {
-                margin: 4px 20px 20px 62px;
+                padding: 17px 20px;
+            }
+
+            .info-box
+            {
+                margin: 6px 20px 22px;
             }
         }
     </style>
@@ -387,7 +394,7 @@
             <div class="hero__badge">Google transfer checklist</div>
             <h1 id="page-title">Move everything safely</h1>
             <p>
-                Work through Gmail, Google Drive and Google Photos one at a time. Tick each section when you have confirmed the data exists in the receiving account.
+                Work through Email, Google Drive and Google Photos separately. Each individual step has its own tick box, and your ticks are saved in this browser.
             </p>
         </section>
 
@@ -398,109 +405,290 @@
         </div>
 
         <section class="checklist" aria-label="Google account transfer tasks">
-            <article class="transfer-card">
-                <input
-                    class="transfer-card__checkbox"
-                    type="checkbox"
-                    id="gmail-transfer"
-                    data-storage-key="google-transfer-checklist:v1:gmail-transfer"
-                >
-
-                <label class="transfer-card__header" for="gmail-transfer">
-                    <span class="custom-checkbox" aria-hidden="true"></span>
-
-                    <div class="transfer-card__content">
-                        <div class="transfer-card__title-row">
-                            <h2>Gmail transfer</h2>
-                            <span class="status-pill">Pending</span>
-                        </div>
-                        <p>Move old emails into the new Gmail account using Gmail import, Google Takeout, or an email client such as Thunderbird.</p>
+            <article class="transfer-section" data-section-name="Email">
+                <header class="section-header">
+                    <div>
+                        <h2>Email transfer</h2>
+                        <p>Use Gmail POP import for the old Google Workspace mailbox, then check that important mail has arrived.</p>
                     </div>
-                </label>
 
-                <ol class="steps">
-                    <li>Before starting, log into the old/source Google Workspace Gmail account.</li>
-                    <li>Go to <strong>Gmail &gt; Settings &gt; See all settings &gt; Forwarding and POP/IMAP</strong>.</li>
-                    <li>Under <strong>POP Download</strong>, choose <strong>Enable POP for all mail</strong>, then click <strong>Save changes</strong>.</li>
-                    <li>In the receiving Gmail account, go to <strong>Settings &gt; Accounts and Import</strong>.</li>
-                    <li>Choose <strong>Check mail from other accounts</strong> or <strong>Import mail and contacts</strong>, depending on what Gmail shows you.</li>
-                    <li>When asked for POP details, use <strong>POP server: pop.gmail.com</strong>, <strong>Port: 995</strong>, and enable <strong>SSL</strong>.</li>
-                    <li>For the username, use the full old email address, for example <strong>name@yourdomain.co.uk</strong>.</li>
-                    <li>If the normal password does not work, create a Google App Password and use that instead.</li>
-                    <li>Check that important labels, sent mail, attachments and old conversations are present.</li>
-                    <li>Keep a Google Takeout backup before deleting anything from the old account.</li>
-                </ol>
+                    <span class="section-progress" data-section-progress>Email progress</span>
+                </header>
 
-                <div class="settings-box">
+                <div class="task-list">
+                    <label class="task-item" for="email-login-source-account">
+                        <input class="task-checkbox" type="checkbox" id="email-login-source-account" data-storage-key="google-transfer-checklist:v2:email-login-source-account">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Log into the old/source account</span>
+                            <span class="task-description">Open the old Google Workspace Gmail account that you are importing from.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-enable-pop-all-mail">
+                        <input class="task-checkbox" type="checkbox" id="email-enable-pop-all-mail" data-storage-key="google-transfer-checklist:v2:email-enable-pop-all-mail">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Enable POP for all mail</span>
+                            <span class="task-description">Go to <strong>Gmail &gt; Settings &gt; See all settings &gt; Forwarding and POP/IMAP</strong>, then choose <strong>Enable POP for all mail</strong> and save changes.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-check-two-step">
+                        <input class="task-checkbox" type="checkbox" id="email-check-two-step" data-storage-key="google-transfer-checklist:v2:email-check-two-step">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Check 2-Step Verification</span>
+                            <span class="task-description">App passwords are normally only available after 2-Step Verification is turned on for the source Google account.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-create-app-password">
+                        <input class="task-checkbox" type="checkbox" id="email-create-app-password" data-storage-key="google-transfer-checklist:v2:email-create-app-password">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Create a Google App Password</span>
+                            <span class="task-description">Search the Google Account page for <strong>App passwords</strong>, or try <code>https://myaccount.google.com/apppasswords</code>. Name it something like <strong>Gmail POP import</strong>.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-start-import">
+                        <input class="task-checkbox" type="checkbox" id="email-start-import" data-storage-key="google-transfer-checklist:v2:email-start-import">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Start the Gmail import</span>
+                            <span class="task-description">In the receiving Gmail account, go to <strong>Settings &gt; Accounts and Import</strong>, then use <strong>Check mail from other accounts</strong> or <strong>Import mail and contacts</strong>.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-enter-pop-settings">
+                        <input class="task-checkbox" type="checkbox" id="email-enter-pop-settings" data-storage-key="google-transfer-checklist:v2:email-enter-pop-settings">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Enter the POP settings</span>
+                            <span class="task-description">Use the full old email address as the username, <strong>POP server: pop.gmail.com</strong>, <strong>Port: 995</strong>, <strong>SSL enabled</strong>, and the 16-character app password.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-verify-imported-mail">
+                        <input class="task-checkbox" type="checkbox" id="email-verify-imported-mail" data-storage-key="google-transfer-checklist:v2:email-verify-imported-mail">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Verify imported email</span>
+                            <span class="task-description">Check important labels, old conversations, sent mail, and attachments before deleting anything from the old account.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="email-keep-takeout-backup">
+                        <input class="task-checkbox" type="checkbox" id="email-keep-takeout-backup" data-storage-key="google-transfer-checklist:v2:email-keep-takeout-backup">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Keep a Takeout backup</span>
+                            <span class="task-description">Keep the Google Takeout backup as a final safety net until you are completely happy with the receiving account.</span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="info-box">
                     <h3>App password notes</h3>
                     <p>
-                        App passwords are not shown as a main left-side menu item in Google Account. Open the old/source account, go to
-                        <strong>Security &amp; sign-in</strong>, then search the Google Account page for <strong>App passwords</strong>.
-                        You can also try going directly to <code>https://myaccount.google.com/apppasswords</code>.
+                        If App passwords is missing, first make sure 2-Step Verification is fully enabled. If it is still missing, the Google Workspace admin may have blocked app passwords, Advanced Protection may be enabled, or you may be signed into the wrong Google account.
                     </p>
                     <p>
-                        If App passwords is missing, first make sure <strong>2-Step Verification</strong> is fully enabled. If it is still missing, the Google Workspace admin may have blocked app passwords, Advanced Protection may be enabled, or you may be signed into the wrong Google account.
-                    </p>
-                    <p>
-                        When you create the app password, name it something like <strong>Gmail POP import</strong>, then paste the 16-character password into the Gmail import password field.
+                        Gmail POP import may pause and continue later. For large mailboxes, it can take hours or longer.
                     </p>
                 </div>
             </article>
 
-            <article class="transfer-card">
-                <input
-                    class="transfer-card__checkbox"
-                    type="checkbox"
-                    id="drive-transfer"
-                    data-storage-key="google-transfer-checklist:v1:drive-transfer"
-                >
-
-                <label class="transfer-card__header" for="drive-transfer">
-                    <span class="custom-checkbox" aria-hidden="true"></span>
-
-                    <div class="transfer-card__content">
-                        <div class="transfer-card__title-row">
-                            <h2>Google Drive files</h2>
-                            <span class="status-pill">Pending</span>
-                        </div>
-                        <p>Share files or folders with the receiving account, then create copies or move them into the new account’s My Drive.</p>
+            <article class="transfer-section" data-section-name="Drive">
+                <header class="section-header">
+                    <div>
+                        <h2>Google Drive transfer</h2>
+                        <p>For shared folders, do not rely on dragging into My Drive. Use download/upload for real copies, or copy individual Google files where possible.</p>
                     </div>
-                </label>
 
-                <ol class="steps">
-                    <li>Put the files into one main folder in the source Google Drive account.</li>
-                    <li>Share that folder with the receiving account as <strong>Editor</strong>.</li>
-                    <li>In the receiving account, open <strong>Shared with me</strong> and copy the files into <strong>My Drive</strong>.</li>
-                    <li>Confirm ownership and storage before removing files from the source account.</li>
-                </ol>
+                    <span class="section-progress" data-section-progress>Drive progress</span>
+                </header>
+
+                <div class="task-list">
+                    <label class="task-item" for="drive-identify-source-files">
+                        <input class="task-checkbox" type="checkbox" id="drive-identify-source-files" data-storage-key="google-transfer-checklist:v2:drive-identify-source-files">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Identify the folders and files to transfer</span>
+                            <span class="task-description">Make a note of the important folders, shared folders, normal files, Google Docs, Google Sheets and Google Slides that need to move.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-avoid-shortcuts">
+                        <input class="task-checkbox" type="checkbox" id="drive-avoid-shortcuts" data-storage-key="google-transfer-checklist:v2:drive-avoid-shortcuts">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Do not rely on dragging shared folders</span>
+                            <span class="task-description">Dragging a shared folder into My Drive often creates only a shortcut. A shortcut is not a real owned copy in the new account.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-avoid-move-option">
+                        <input class="task-checkbox" type="checkbox" id="drive-avoid-move-option" data-storage-key="google-transfer-checklist:v2:drive-avoid-move-option">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Do not use Move for migration</span>
+                            <span class="task-description">The <strong>Move</strong> option is not the same as making a safe independent copy, and it can affect folder location or permissions.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-download-shared-folder">
+                        <input class="task-checkbox" type="checkbox" id="drive-download-shared-folder" data-storage-key="google-transfer-checklist:v2:drive-download-shared-folder">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Download shared folders as a zip</span>
+                            <span class="task-description">In the source account or shared view, right-click the folder and choose <strong>Download</strong>. Wait for Google Drive to create the zip file.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-unzip-locally">
+                        <input class="task-checkbox" type="checkbox" id="drive-unzip-locally" data-storage-key="google-transfer-checklist:v2:drive-unzip-locally">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Unzip the download on your computer</span>
+                            <span class="task-description">Extract the zip file locally so you can upload the real folder and files into the receiving account.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-upload-folder">
+                        <input class="task-checkbox" type="checkbox" id="drive-upload-folder" data-storage-key="google-transfer-checklist:v2:drive-upload-folder">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Upload into the receiving account</span>
+                            <span class="task-description">Log into the receiving account, go to <strong>Google Drive &gt; My Drive &gt; New &gt; Folder upload</strong>, then upload the unzipped folder.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-copy-google-files">
+                        <input class="task-checkbox" type="checkbox" id="drive-copy-google-files" data-storage-key="google-transfer-checklist:v2:drive-copy-google-files">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Handle Google Docs, Sheets and Slides separately</span>
+                            <span class="task-description">Where available, use <strong>Make a copy</strong> on individual Google Docs, Sheets and Slides. Downloading may convert them into Word, Excel or PowerPoint files.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="drive-confirm-new-account-ownership">
+                        <input class="task-checkbox" type="checkbox" id="drive-confirm-new-account-ownership" data-storage-key="google-transfer-checklist:v2:drive-confirm-new-account-ownership">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Confirm the files exist in My Drive</span>
+                            <span class="task-description">Check that the uploaded/copied files are actually in the receiving account’s My Drive, not just appearing as shortcuts to the old account.</span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="info-box">
+                    <h3>Drive transfer note</h3>
+                    <p>
+                        For normal files, download and upload is usually the simplest safe method. For Google-native files, copying individual files may preserve them better than downloading and converting them.
+                    </p>
+                </div>
             </article>
 
-            <article class="transfer-card">
-                <input
-                    class="transfer-card__checkbox"
-                    type="checkbox"
-                    id="photos-transfer"
-                    data-storage-key="google-transfer-checklist:v1:photos-transfer"
-                >
-
-                <label class="transfer-card__header" for="photos-transfer">
-                    <span class="custom-checkbox" aria-hidden="true"></span>
-
-                    <div class="transfer-card__content">
-                        <div class="transfer-card__title-row">
-                            <h2>Google Photos transfer</h2>
-                            <span class="status-pill">Pending</span>
-                        </div>
-                        <p>Use Partner Sharing, then save the shared photos into the receiving Google Photos account.</p>
+            <article class="transfer-section" data-section-name="Photos">
+                <header class="section-header">
+                    <div>
+                        <h2>Google Photos transfer</h2>
+                        <p>Use Partner Sharing where possible, then make sure the receiving account is saving the shared photos into its own library.</p>
                     </div>
-                </label>
 
-                <ol class="steps">
-                    <li>In the source account, open Google Photos and enable <strong>Partner Sharing</strong>.</li>
-                    <li>Invite the receiving Google account and share all photos, or photos from a chosen date.</li>
-                    <li>In the receiving account, accept the invite and choose <strong>Save to your account &gt; All photos</strong>.</li>
-                    <li>Check old, recent and video items before deleting anything from the source account.</li>
-                </ol>
+                    <span class="section-progress" data-section-progress>Photos progress</span>
+                </header>
+
+                <div class="task-list">
+                    <label class="task-item" for="photos-open-source-account">
+                        <input class="task-checkbox" type="checkbox" id="photos-open-source-account" data-storage-key="google-transfer-checklist:v2:photos-open-source-account">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Open Google Photos in the source account</span>
+                            <span class="task-description">Make sure you are signed into the old/source account that currently holds the photos.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-enable-partner-sharing">
+                        <input class="task-checkbox" type="checkbox" id="photos-enable-partner-sharing" data-storage-key="google-transfer-checklist:v2:photos-enable-partner-sharing">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Enable Partner Sharing</span>
+                            <span class="task-description">Invite the receiving Google account and choose whether to share all photos or photos from a chosen date.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-accept-invite">
+                        <input class="task-checkbox" type="checkbox" id="photos-accept-invite" data-storage-key="google-transfer-checklist:v2:photos-accept-invite">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Accept the invite in the receiving account</span>
+                            <span class="task-description">Open the receiving account and accept the Partner Sharing invitation.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-save-all">
+                        <input class="task-checkbox" type="checkbox" id="photos-save-all" data-storage-key="google-transfer-checklist:v2:photos-save-all">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Turn on auto-save for all shared photos</span>
+                            <span class="task-description">
+                                In the receiving account, Google may show this as <strong>Auto save all shared photos</strong>, <strong>Automatically save shared photos</strong>, <strong>Save to your account</strong>, or <strong>Save to library</strong>. If it asks whether you want to auto-save all shared photos and you choose <strong>Yes</strong>, that is the setting you want.
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-check-save-setting">
+                        <input class="task-checkbox" type="checkbox" id="photos-check-save-setting" data-storage-key="google-transfer-checklist:v2:photos-check-save-setting">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Check the save setting if needed</span>
+                            <span class="task-description">
+                                On desktop, check <strong>photos.google.com &gt; Settings &gt; Sharing &gt; Partner sharing</strong>. Look for wording such as <strong>Save to your account</strong>, <strong>Save to library</strong>, <strong>Auto save</strong>, or <strong>All photos</strong>.
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-check-old-recent-video">
+                        <input class="task-checkbox" type="checkbox" id="photos-check-old-recent-video" data-storage-key="google-transfer-checklist:v2:photos-check-old-recent-video">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Check old, recent and video items</span>
+                            <span class="task-description">Check a sample of old photos, recent photos, videos, albums and important memories before deleting anything from the source account.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-check-edge-cases">
+                        <input class="task-checkbox" type="checkbox" id="photos-check-edge-cases" data-storage-key="google-transfer-checklist:v2:photos-check-edge-cases">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Check possible missing photo types</span>
+                            <span class="task-description">Partner Sharing may not cover every type of image in every situation. Check screenshots, WhatsApp images, downloaded images, app folders, videos and anything especially important.</span>
+                        </span>
+                    </label>
+
+                    <label class="task-item" for="photos-keep-takeout-backup">
+                        <input class="task-checkbox" type="checkbox" id="photos-keep-takeout-backup" data-storage-key="google-transfer-checklist:v2:photos-keep-takeout-backup">
+                        <span class="custom-checkbox" aria-hidden="true"></span>
+                        <span class="task-content">
+                            <span class="task-title">Keep a Takeout backup</span>
+                            <span class="task-description">Keep your Google Takeout photo backup until you are sure the receiving account has everything you need.</span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="info-box">
+                    <h3>Google Photos note</h3>
+                    <p>
+                        If you clicked <strong>Yes</strong> when Google asked whether to auto-save all shared photos, that is most likely the correct action. The next step is to verify by checking old photos, recent photos and videos inside the receiving account.
+                    </p>
+                    <p>
+                        Keep the Takeout backup until you have checked the receiving account properly. This is especially important for videos, screenshots, WhatsApp images, downloaded images and app-folder photos.
+                    </p>
+                </div>
             </article>
         </section>
 
@@ -511,24 +699,26 @@
 
     <script>
         /*
-            This script saves each checklist tick into localStorage.
+            This script saves every checklist tick into localStorage.
 
             Important:
-            - Each checkbox has a data-storage-key value.
+            - Every checkbox has its own data-storage-key.
             - Do not rename an existing data-storage-key later unless you are happy to lose that saved tick.
-            - You can add new checklist items later by giving them their own new data-storage-key.
+            - You can safely change the visible wording around a checkbox.
+            - You can safely add new checklist items later by giving them new data-storage-key values.
 
             Example for a future item:
             <input
-                class="transfer-card__checkbox"
+                class="task-checkbox"
                 type="checkbox"
-                id="calendar-transfer"
-                data-storage-key="google-transfer-checklist:v1:calendar-transfer"
+                id="calendar-transfer-export"
+                data-storage-key="google-transfer-checklist:v2:calendar-transfer-export"
             >
         */
 
-        const checklistCheckboxes = document.querySelectorAll(".transfer-card__checkbox");
+        const checklistCheckboxes = document.querySelectorAll(".task-checkbox");
         const resetChecklistButton = document.querySelector("#reset-checklist-button");
+        const transferSections = document.querySelectorAll(".transfer-section");
 
         function loadSavedCheckboxStates()
         {
@@ -550,6 +740,24 @@
             localStorage.setItem(storageKey, checkbox.checked ? "true" : "false");
         }
 
+        function updateSectionProgress()
+        {
+            transferSections.forEach(function (section)
+            {
+                const sectionName = section.dataset.sectionName;
+                const sectionCheckboxes = section.querySelectorAll(".task-checkbox");
+                const checkedCheckboxes = section.querySelectorAll(".task-checkbox:checked");
+                const progressLabel = section.querySelector("[data-section-progress]");
+
+                progressLabel.textContent = sectionName + ": " + checkedCheckboxes.length + " of " + sectionCheckboxes.length + " done";
+
+                if (checkedCheckboxes.length === sectionCheckboxes.length)
+                {
+                    progressLabel.textContent = sectionName + ": complete";
+                }
+            });
+        }
+
         function resetChecklistTicks()
         {
             const userConfirmedReset = window.confirm("Reset all checklist ticks?");
@@ -566,6 +774,8 @@
                 checkbox.checked = false;
                 localStorage.removeItem(storageKey);
             });
+
+            updateSectionProgress();
         }
 
         checklistCheckboxes.forEach(function (checkbox)
@@ -573,12 +783,14 @@
             checkbox.addEventListener("change", function ()
             {
                 saveCheckboxState(checkbox);
+                updateSectionProgress();
             });
         });
 
         resetChecklistButton.addEventListener("click", resetChecklistTicks);
 
         loadSavedCheckboxStates();
+        updateSectionProgress();
     </script>
 </body>
 </html>
